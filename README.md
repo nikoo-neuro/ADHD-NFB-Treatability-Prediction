@@ -57,11 +57,7 @@ If you use this code or methodology, please cite our work:
 For collaborations, questions, or code access, feel free to reach out:
 
  nikoo.ahmadi92@gmail.com
+ 
  GitHub: nikoo-neuro
 
-
-
-
-
-## 📁 Repository Contents
 
