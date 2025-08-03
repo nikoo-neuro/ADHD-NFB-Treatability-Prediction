@@ -1,63 +1,55 @@
-# ADHD-NFB-Treatability-Prediction
- EEG-based prediction of neurofeedback responsiveness in ADHD using functional connectivity features.
+# Neurofeedback Treatment Prediction in ADHD Patients
 
-This repository contains the methodology, explanation, and article PDF for our research titled:
+This project implements a full pipeline to predict whether a child with ADHD will respond to neurofeedback therapy, based on EEG data recorded before treatment.
 
- **"Prediction of Success in Neurofeedback Treatment for Attention-Deficit Hyperactivity Disorder before Starting Treatment"**  
- *By: Nikoo Khanahmadi, M.Sc.*  
- *Supervised by: Dr. Mohammad Reza Yousefi*  
- *Islamic Azad University, Najafabad Branch*
+The pipeline includes:
 
+- EEG preprocessing with a bandpass filter (0.5–45 Hz)
+- Feature extraction using Phase Locking Index (PLI) between brain regions
+- Feature selection via electrode filtering
+- Classification using an ensemble of SVM, KNN, and Decision Tree models
+- Evaluation using 5-fold cross-validation
 
-##  Abstract
+The model was trained and evaluated on a real EEG dataset containing recordings from 1200 trials (600 treatable, 600 non-treatable).
 
-In this research, we propose a method to **predict the responsiveness of ADHD patients to neurofeedback therapy before treatment starts**, using EEG signal analysis and functional connectivity features.
+**Achieved average accuracy:** 90.6%
 
-We analyzed EEG data from **60 children aged 7–14 years**, extracted coherence-based features (specifically alpha and beta bands), and classified patients as **treatable or non-treatable** using **Linear Discriminant Analysis (LDA)**.
+##  Project Structure
 
+src/  
+ preprocessing.py          # Filters EEG signals using Butterworth bandpass filter  
+ feature_extraction.py     # Computes PLI-based connectivity features  
+ classification.py         # Ensemble classifier (SVM + KNN + DecisionTree)  
+ main.py                   # Runs the full pipeline  
 
+##  Dataset
 
-##  Methodology Overview
+The EEG data was recorded from 32 channels, 550 samples per trial, at 500 Hz.  
+Labels: 1 = treatable, 0 = non-treatable
 
-- **Data**: EEG recordings during 5-minute neurofeedback stimulation (F3, F4, C3, C4, P3, P4, O1, O2)
-- **Preprocessing**: Filtering (0.5–45 Hz), artifact removal, segmentation
-- **Feature Extraction**: Coherence-based Functional Connectivity Index (FCI)
-- **Classification**: LDA model trained on extracted FCI values
-- **Outcome**: Predicts treatability before therapy starts
+Data format: `data/eeg_dataset.mat`  
+Variables expected: `eeg_data`, `labels`
 
+##  Reference
 
-##  Results
+Based on the article:  
+**Prediction of Success in Neurofeedback Treatment for ADHD Before Starting Treatment**  
+Authors: Nikoo Khanahmadi, Mohammad Reza Yousefi  
+*Journal of Intelligent Procedures in Electrical Technology (2025)*
 
-| Metric        | Value  |
-|---------------|--------|
-| Accuracy      | 83.3%  |
-| Sensitivity   | 85.7%  |
-| Specificity   | 80.0%  |
-| AUC           | 0.87   |
+##  Requirements
 
-##  Repository Contents
+- Python 3.8+
+- numpy
+- scipy
+- scikit-learn
 
- data/ → EEG data samples (simulated or anonymized)
- preprocessing/ → MATLAB scripts for signal cleaning
- features/ → FCI computation code
- classifier/ → LDA training and evaluation
- Article.pdf → Full-text PDF of the research
+Install dependencies with:
 
+pip install -r requirements.txt
 
-##  Citation
+##  Contact
 
-If you use this code or methodology, please cite our work:
-
-  title={Prediction of Success in Neurofeedback Treatment for ADHD Before Starting Therapy},
-  author={Nikoo Khanahmadi and Mohammad Reza Yousefi},
-  year={2025},
-  affiliation={Islamic Azad University, Najafabad}
-
- Contact
-For collaborations, questions, or code access, feel free to reach out:
-
- nikoo.ahmadi92@gmail.com
- 
- GitHub: nikoo-neuro
-
+If you have questions or want to collaborate, feel free to reach out:  
+nikoo.ahmadi92@gmail.com
 
